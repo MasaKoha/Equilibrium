@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/samples/">
+    <Project Path="samples/ToyGame/ToyGame.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Equilibrium.Core/Equilibrium.Core.csproj" />
+    <Project Path="src/Equilibrium.Simulation/Equilibrium.Simulation.csproj" />
+    <Project Path="src/Equilibrium.Storage/Equilibrium.Storage.csproj" />
+  </Folder>
+</Solution>

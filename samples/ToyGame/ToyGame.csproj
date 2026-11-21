@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <!-- 自社ゲームの実装と同じ条件で契約を確かめるため、Core と同じ範囲に固定する -->
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Equilibrium.Core\Equilibrium.Core.csproj" />
+  </ItemGroup>
+</Project>

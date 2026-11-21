@@ -1,0 +1,37 @@
+# .NET
+bin/
+obj/
+*.user
+.vs/
+
+# Rider / IDE
+.idea/
+*.DotSettings.user
+
+# テスト成果物
+TestResults/
+coverage/
+*.trx
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# 実験の出力（大きいので追跡しない）
+runs/
+*.parquet
+*.sqlite
+
+# 機密
+*.secret.*
+.env
+.env.local
+
+# 一時ファイル
+*.tmp
+tmp/
+
+# OS
+.DS_Store
+Thumbs.db
