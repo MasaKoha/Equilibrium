@@ -1,0 +1,454 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Equilibrium カードゲーム評価 問題集</title><style>
+:root{color-scheme:light dark;--paper:#f8fafc;--ink:#182736;--muted:#405872;--line:#d9e3ec;--panel:#edf3f9;--accent:#07599a}
+@media(prefers-color-scheme:dark){:root{--paper:#172331;--ink:#ebf2fc;--muted:#bed0e4;--line:#42566a;--panel:#24364b;--accent:#9bd4ff}}
+*{box-sizing:border-box}html{scroll-padding-top:1rem}body{margin:0;background:var(--paper);color:var(--ink);font:1.035rem/1.85 system-ui,sans-serif}a{color:var(--accent);text-underline-offset:.18em}a:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+header{background:var(--panel);border-bottom:1px solid var(--line)}.wrap{max-width:68rem;margin:auto;padding-inline:clamp(1rem,4vw,2.5rem)}.mast{padding-block:2.65rem 2.1rem}.kicker{color:var(--accent);letter-spacing:.13em;font-size:.8rem;font-weight:750}h1,h2,h3{line-height:1.42;overflow-wrap:anywhere}.mast h1{font-size:clamp(1.75rem,5vw,3rem);margin:.25rem 0 .5rem}.mast p{margin:.4rem 0;color:var(--muted)}.layout{display:grid;grid-template-columns:12rem minmax(0,44rem);gap:2.25rem;padding-block:1.5rem 4rem}nav{position:sticky;top:1rem;align-self:start;max-height:calc(100vh - 2rem);overflow:auto}nav ol{padding:0;list-style:none;margin:.5rem 0}nav a{display:block;padding:.25rem 0}main{min-width:0}main h1{font-size:clamp(1.5rem,4vw,2.12rem);border-top:1px solid var(--line);padding-top:1.4rem;margin:2.3rem 0 .85rem}main h2{font-size:1.27rem;margin-top:1.9rem}p,li{overflow-wrap:anywhere}ul,ol{padding-left:1.4rem}p{margin:.75rem 0}figure{margin:1.25rem 0}.diagram,.exercise,.filter{background:var(--panel);border:1px solid var(--line);border-radius:.8rem;padding:clamp(.65rem,3vw,1.2rem)}.diagram-row,.arrows{display:grid;gap:.45rem;align-items:start;text-align:center}.cols1{grid-template-columns:1fr}.cols2{grid-template-columns:repeat(2,minmax(0,1fr))}.cols4{grid-template-columns:repeat(4,minmax(0,1fr))}.node{background:var(--paper);border:1px solid var(--line);border-radius:.55rem;text-align:center;padding:.38rem .15rem;line-height:1.45;font-size:clamp(.81rem,2.8vw,.96rem);overflow-wrap:anywhere}.arrows{font-size:1.05rem;color:var(--accent);font-weight:750}figcaption{color:var(--muted);font-size:.9rem;margin-top:.75rem}math[display=block]{display:block;max-width:100%;overflow-x:auto;overflow-y:hidden;text-align:center;padding:.85rem .45rem;font-size:clamp(.9rem,3.7vw,1.18rem);color:var(--ink);background:var(--panel);border-radius:.45rem;margin:.65rem 0}pre{overflow:auto;border:1px solid var(--line);border-radius:.55rem;background:var(--panel);padding:.9rem;font-size:.86rem;line-height:1.6}details summary{cursor:pointer;font-weight:700;padding:.2rem 0}.filter label{display:block;font-weight:700}.filter input{font:inherit;width:100%;padding:.5rem;border:1px solid var(--muted);border-radius:.4rem;background:var(--paper);color:var(--ink)}#search-status{font-size:.9rem}.back{font-size:.88rem;margin-left:.75rem;white-space:nowrap}.skip{position:absolute;left:-100vw}.skip:focus{left:1rem;top:1rem;background:var(--paper);padding:.5rem}footer{border-top:1px solid var(--line);padding-block:1.2rem;color:var(--muted)}@media(max-width:720px){.layout{display:block}nav{position:static;max-height:none;border-bottom:1px solid var(--line);margin-bottom:1.2rem}nav ol{display:flex;gap:.22rem .85rem;flex-wrap:wrap}nav a{padding:.42rem 0}.mast{padding-block:1.7rem}}@media print{nav,.filter,.skip,.back{display:none}.layout{display:block}.diagram,.exercise{break-inside:avoid}details:not([open])>*:not(summary){display:block}}
+.question{border:1px solid var(--line);border-radius:.85rem;padding:clamp(.8rem,3vw,1.4rem);margin:1rem 0 1.5rem}.question h3{margin:0}.question-body{overflow-x:auto}.answers details{background:var(--panel);border-radius:.45rem;padding:.4rem .72rem;margin:.5rem 0}.answers details[open]{padding-bottom:.65rem}table{border-collapse:collapse;min-width:19rem;width:100%}td,th{padding:.4rem;border:1px solid var(--line);text-align:center}thead{background:var(--panel)}@media print{.question{break-inside:auto}}</style></head><body id="top"><a class="skip" href="#main">問題へ移動</a><header><div class="wrap mast"><div class="kicker">EQUILIBRIUM · 演習</div><h1>カードゲーム評価 問題集</h1><p>基本5科目の15問と総合問題。架空のカードとデータで練習します。</p></div></header><div class="wrap layout"><nav aria-label="問題集の目次"><strong>目次</strong><ol><li><a href="#q-chapter-1">第1章 確率論</a></li><li><a href="#q-chapter-2">第2章 数理統計</a></li><li><a href="#q-chapter-3">第3章 実験計画</a></li><li><a href="#q-chapter-4">第4章 対戦AI</a></li><li><a href="#q-chapter-5">第5章 ソフトウェア工学</a></li><li><a href="#q-chapter-6">最終総合問題 キーカード差し替えの評価</a></li></ol></nav><main id="main"><p>先に自力で考え、詰まったらヒントを順に開いてください。解答と採点の目安は問題ごとに確認できます。</p><p><a href="https://www.masakoha.com/Equilibrium/">教科書を開く</a></p><section><h2 id="q-chapter-1">第1章 確率論</h2><article class="question" id="q-1-1"><h3>1-A 〔説明〕超幾何か二項か</h3><p><strong>参照節：</strong> <a
+href="https://www.masakoha.com/Equilibrium/#section-1-1">1.1</a>, <a
+href="https://www.masakoha.com/Equilibrium/#section-1-3">1.3</a></p>
+<div class="question-body"><p>山札30枚、キー2枚、初手5枚とする。 (a) 1回の初手で引いたキー枚数 X
+(b) 毎回シャッフルし直して初手を200回配り、キーが1枚以上あった回数 Y</p>
+<p>それぞれの分布名と母数を答えよ。(a) を Bin(5, 2/30)
+で表してはいけない理由を、1枚目の結果に触れて説明せよ。E[Y]
+も求めよ。</p>
+</div><div class="answers"><details><summary>ヒント 1</summary><p>1回の試行の中で、カードを戻すか。試行ごとに確率は一定か。</p>
+</details><details><summary>ヒント 2</summary><p>1枚目がキーだった場合と非キーだった場合で、2枚目がキーである確率を比べる。</p>
+</details><details><summary>ヒント 3</summary><ol start="2" type="a">
+<li>の1回の成功確率は余事象 X=0 から求める。</li>
+</ol>
+</details><details><summary>解答・解説</summary><ol type="a">
+<li><p>超幾何分布（N=30, K=2,
+n=5）。2枚目がキーである確率は、1枚目がキーなら 1/29、非キーなら
+2/29。1枚目の結果で変わるので、各ドローは独立ではない。</p></li>
+<li><p>二項分布 Bin(200,
+p)。初手同士は独立で、1回の成功確率は一定なので二項分布になる。
+p＝1−C(28,5)/C(30,5)＝1−(25×24)/(30×29)＝1−600/870≈0.3103
+E[Y]＝200×0.3103≈62.1</p></li>
+</ol>
+<p>誤答例：Bin(5, 2/30) とすると P(X=0)＝(28/30)⁵≈0.7082
+になる。正しい値は 0.6897
+で、戻さない抽出の依存を無視したことによるずれ。</p>
+</details><details><summary>採点の目安</summary><ol type="a">
+<li>と (b) の分布名と母数が正しい（各1点）</li>
+</ol>
+<ul>
+<li>条件付き確率 1/29 と 2/29 の比較で非独立を説明できている（1点）</li>
+<li>E[Y]≈62 を余事象から求めている（1点）</li>
+</ul>
+</details></div></article><article class="question" id="q-1-2"><h3>1-B 〔計算・実装〕分布を全部書き出す</h3><p><strong>参照節：</strong> <a
+href="https://www.masakoha.com/Equilibrium/#section-1-3">1.3</a>, <a
+href="https://www.masakoha.com/Equilibrium/#section-1-4">1.4</a></p>
+<div class="question-body"><p>1-A (a) の X について、P(X=0), P(X=1), P(X=2)
+を求め、合計が1になることを確かめよ。次に E[X] と Var(X)
+を求めよ。さらに Python で同じ値を厳密に計算するコードを書け。</p>
+</div><div class="answers"><details><summary>ヒント 1</summary><p>C(30,5)=142,506、C(28,5)=98,280、C(28,4)=20,475、C(28,3)=3,276。</p>
+</details><details><summary>ヒント 2</summary><p>E[X]=Σx·P(X=x)、Var(X)=E[X²]−E[X]²。</p>
+</details><details><summary>ヒント 3</summary><p>コードは <code>math.comb</code> と <code>fractions.Fraction</code>
+を使うと誤差が出ない。</p>
+</details><details><summary>解答・解説</summary><ul>
+<li>P(0)＝98,280/142,506≈0.68966</li>
+<li>P(1)＝2×20,475/142,506＝40,950/142,506≈0.28736</li>
+<li>P(2)＝3,276/142,506≈0.02299</li>
+<li>合計＝1.00000</li>
+</ul>
+<p>E[X]＝0.28736＋2×0.02299≈0.3333（＝nK/N＝5×2/30）
+E[X²]＝0.28736＋4×0.02299≈0.37932 Var(X)＝0.37932−0.11111≈0.2682</p>
+<pre class="python"><code>from fractions import Fraction
+from math import comb
+
+N, K, n = 30, 2, 5
+dist = {x: Fraction(comb(K, x) * comb(N - K, n - x), comb(N, n)) for x in range(K + 1)}
+assert sum(dist.values()) == 1
+ex = sum(x * p for x, p in dist.items())
+var = sum(x * x * p for x, p in dist.items()) - ex ** 2
+print({x: float(p) for x, p in dist.items()}, float(ex), float(var))</code></pre>
+<p>誤答例：E[X]=1/3
+を見て「3回に1回キーが来る」と読むのは誤り。キーが来る確率は
+P(X≥1)≈0.310 で、2枚同時に来る分だけ期待値の方が大きい。</p>
+</details><details><summary>採点の目安</summary><p>3つの確率が小数第3位まで正しく、合計が1（2点） -
+E[X]≈0.333、Var≈0.268（各1点） - コードが厳密計算で、合計1を assert
+している（1点）</p>
+</details></div></article><article class="question" id="q-1-3"><h3>1-C 〔誤りの診断〕42%に落ち着くシミュレーション</h3><p><strong>参照節：</strong> <a
+href="https://www.masakoha.com/Equilibrium/#section-1-3">1.3</a>, <a
+href="https://www.masakoha.com/Equilibrium/#section-1-5">1.5</a></p>
+<div class="question-body"><p>山札40枚・キー3枚・7枚の取得率を、次のコードで20,000試行した。検証した
+Python での結果は 0.4176
+だった。理論値と比べて原因を特定し、正しいモデルのもとでどの程度離れているかを数値で示せ。</p>
+<pre class="python"><code>from random import Random
+
+rng = Random(7)
+deck = [1] * 3 + [0] * 37
+hits = sum(any(rng.choices(deck, k=7)) for _ in range(20_000))
+print(hits, hits / 20_000)  # 8352 0.4176</code></pre>
+</div><div class="answers"><details><summary>ヒント 1</summary><p><code>choices</code> と <code>sample</code> の違いを調べる。</p>
+</details><details><summary>ヒント 2</summary><p>戻して引くなら確率はどうなるか。</p>
+</details><details><summary>ヒント 3</summary><p>p≈0.448、n=20,000 のときの標準誤差を計算する。</p>
+</details><details><summary>解答・解説</summary><p><code>choices</code>
+は復元抽出（戻して引く）なので、1−(37/40)⁷≈0.4206
+を推定している。理論値は非復元の 0.4478。</p>
+<p>標準誤差は √(0.4478×0.5522/20,000)≈0.00352。差は 0.4478−0.4176≈0.0302
+で、約8.6標準誤差に当たる。正しい抽出モデルのもとでは非常に大きなズレである。原因を確定できるのは、コードが実際に復元抽出していると確認できたため。</p>
+<p>修正は <code>rng.sample(deck, 7)</code>。</p>
+</details><details><summary>採点の目安</summary><p>復元抽出が原因と特定できている（2点） - 0.4206
+との一致を示せている（1点） -
+標準誤差と差を比べ、コードから原因を確認している（1点）</p>
+</details></div></article></section><section><h2 id="q-chapter-2">第2章 数理統計</h2><article class="question" id="q-2-1"><h3>2-A 〔説明〕多数のカードを検定した後の報告</h3><p><strong>参照節：</strong> <a
+href="https://www.masakoha.com/Equilibrium/#section-2-3">2.3</a>, <a
+href="https://www.masakoha.com/Equilibrium/#section-2-5">2.5</a></p>
+<div class="question-body"><p>40枚のカードを個別に有意水準5%で検定したところ、3枚が「有意」になった。
+(1)
+すべてのカードに効果がない場合、偽陽性は何件期待されるか。この3枚をどう扱うべきか。
+(2) 事前に決めた4件の確認的検定の p 値が 0.004, 0.011, 0.030, 0.20
+だった。α=0.05 で Holm 法を適用せよ。</p>
+</div><div class="answers"><details><summary>ヒント 1</summary><p>40×0.05。</p>
+</details><details><summary>ヒント 2</summary><p>Holm 法では、p 値を小さい順に α/4, α/3, α/2, α/1 と比べる。</p>
+</details><details><summary>ヒント 3</summary><p>最初に棄却できなかった時点で止める。</p>
+</details><details><summary>解答・解説</summary><ol type="1">
+<li><p>期待偽陽性は
+40×0.05＝2件。3件の有意は偽陽性だけでも十分起こりうるので、「候補」として扱う。未使用のシードによる確認実験で再検定し、効果量と区間を報告する。</p></li>
+<li><p>Holm 法の手順：</p></li>
+</ol>
+<ul>
+<li>0.004 と 0.05/4＝0.0125 を比べる → 棄却</li>
+<li>0.011 と 0.05/3≈0.0167 を比べる → 棄却</li>
+<li>0.030 と 0.05/2＝0.025 を比べる → 棄却しない。ここで停止</li>
+</ul>
+<p>残りの 0.20 も棄却しない。棄却は2件。</p>
+<p>誤答例：0.030&lt;0.05
+だからと3件目まで棄却するのは、多重比較を無視している。</p>
+</details><details><summary>採点の目安</summary><p>期待件数2と、候補扱い・再確認の方針（2点） - Holm
+の比較値と停止位置（2点）</p>
+</details></div></article><article class="question" id="q-2-2"><h3>2-B 〔計算〕少数試合の Wilson 区間</h3><p><strong>参照節：</strong> <a
+href="https://www.masakoha.com/Equilibrium/#section-2-1">2.1</a>, <a
+href="https://www.masakoha.com/Equilibrium/#section-2-2">2.2</a></p>
+<div class="question-body"><p>45勝/60試合のとき、95% Wilson
+区間と単純な正規近似の区間を求めよ。中心位置の違いを説明せよ。</p>
+</div><div class="answers"><details><summary>ヒント 1</summary><p>p̂=0.75、z²=3.8416。</p>
+</details><details><summary>ヒント 2</summary><p>分子の中心 p̂＋z²/(2n)、根号の中身 p̂(1−p̂)/n＋z²/(4n²)、分母 1＋z²/n
+を順に求める。</p>
+</details><details><summary>ヒント 3</summary><p>Wilson 区間の中心＝分子の中心÷分母。</p>
+</details><details><summary>解答・解説</summary><ul>
+<li>z²/(2n)＝0.03201 → 分子の中心 0.78201</li>
+<li>根号の中身：0.003125＋0.000267＝0.003392 → 平方根 0.05824 →
+×1.96＝0.11415</li>
+<li>分母＝1.06403</li>
+<li>下限＝(0.78201−0.11415)/1.06403≈0.628</li>
+<li>上限＝(0.78201＋0.11415)/1.06403≈0.842</li>
+</ul>
+<p>Wilson 区間は約 62.8%〜84.2%。</p>
+<p>正規近似：標準誤差＝√0.003125＝0.0559 → 0.75±0.1096 →
+64.0%〜86.0%。</p>
+<p>Wilson 区間の中心は約0.735で、推定値 p̂=0.75
+より0.5側に寄る。区間はその中心に対して対称だが、p̂
+に対しては非対称。対して単純な正規近似は p̂
+を中心に対称で、極端な場合は0〜1をはみ出す。</p>
+</details><details><summary>採点の目安</summary><p>Wilson 区間が ±0.5ポイント以内で正しい（2点） -
+正規近似区間が正しい（1点） - 非対称性を説明できている（1点）</p>
+</details></div></article><article class="question" id="q-2-3"><h3>2-C 〔誤りの診断〕対応を捨てた比較</h3><p><strong>参照節：</strong> <a
+href="https://www.masakoha.com/Equilibrium/#section-2-4">2.4</a></p>
+<div class="question-body"><p>同じ300シードで A と B を1試合ずつ戦わせた。A は150勝、B
+は168勝。組ごとの差（B−A）は +1 が36組、−1 が18組、0 が246組だった。</p>
+<p>分析者は2つの独立な勝率区間が重なることから「差は不明」とし、さらに600行を独立に再抽出してブートストラップした。誤りを指摘し、対応のある差の95%区間（正規近似）を求めよ。</p>
+</div><div class="answers"><details><summary>ヒント 1</summary><p>分析の単位は行か、組か。</p>
+</details><details><summary>ヒント 2</summary><p>差 d の平均と E[d²] を求める。</p>
+</details><details><summary>ヒント 3</summary><p>標準誤差＝SD/√300。</p>
+</details><details><summary>解答・解説</summary><p>誤り：対応関係を無視している。600行を独立に再抽出すると組が壊れ、共通乱数で生じた正の相関（精度向上の源）が捨てられる。区間の重なりで差を判断するのも不適切。</p>
+<p>対応のある差の計算： - Δ̂＝(36−18)/300＝+0.06 - E[d²]＝54/300＝0.18 -
+Var＝0.18−0.0036＝0.1764 → SD 0.42 - 標準誤差＝0.42/17.32≈0.0242 -
+95%区間＝0.06±0.0475 → 約 +1.2〜+10.8 ポイント</p>
+<p>独立として扱った場合：標準誤差≈√(0.25/300＋0.2464/300)≈0.0407、区間は
+−2.0〜+14.0
+ポイント。対応を使った方が明らかに狭い。正しいブートストラップは300組を復元抽出する。</p>
+</details><details><summary>採点の目安</summary><p>抽出単位の誤りを指摘できている（2点） - Δ̂ と区間が正しい（2点） -
+独立扱いより狭くなる理由（正の相関）を述べている（1点）</p>
+</details></div></article></section><section><h2 id="q-chapter-3">第3章 実験計画</h2><article class="question" id="q-3-1"><h3>3-A 〔説明〕観測比較を介入効果と呼ばない</h3><p><strong>参照節：</strong> <a
+href="https://www.masakoha.com/Equilibrium/#section-3-1">3.1</a>, <a
+href="https://www.masakoha.com/Equilibrium/#section-3-4">3.4</a></p>
+<div class="question-body"><p>報告書に「キーを5ターン目までに引いた試合の勝率は61%、引かなかった試合は47%。よってキーは+14ポイントの効果」とある。この主張の問題点を2つ挙げ、介入効果を測る設計を示せ。</p>
+</div><div class="answers"><details><summary>ヒント 1</summary><p>何と何の比較か。カードの採否か、引けたかどうかか。</p>
+</details><details><summary>ヒント 2</summary><p>試合の長さや手札事故は、取得と勝敗の両方に影響しないか。</p>
+</details><details><summary>ヒント 3</summary><p>「1枠だけ差し替える」形にする。</p>
+</details><details><summary>解答・解説</summary><p>問題点： 1.
+デッキの採否ではなく「引けたか」で試合を分けている。試合が長引けば取得機会も増えるなど、試合展開が取得と勝敗の両方に影響する（交絡）。
+2. 取得は試合中に決まる結果なので、介入として割り付けられていない。</p>
+<p>設計：基準デッキ A と、1枠だけ同役割の代替に替えた B
+を用意する。同じ対面・シードで先後×A/B の4試合を1ブロックとし、B−A
+のブロック差で評価する。取得別の勝率は診断欄に回す。</p>
+</details><details><summary>採点の目安</summary><p>交絡を具体的に1つ挙げられている（2点） -
+採否と取得の区別ができている（1点） -
+対照・ブロック化を含む設計を示せている（1点）</p>
+</details></div></article><article class="question" id="q-3-2"><h3>3-B 〔計算〕必要ブロック数と計算時間</h3><p><strong>参照節：</strong> <a
+href="https://www.masakoha.com/Equilibrium/#section-3-3">3.3</a></p>
+<div class="question-body"><p>予備実験でブロック差の SD は s=0.40 だった。両側5%・検出力80%で
+δ=0.04 を検出するのに必要なブロック数と試合数を求めよ。δ=0.02
+の場合はどうなるか。1試合0.05秒、8並列なら実行時間はどれだけか。</p>
+</div><div class="answers"><details><summary>ヒント 1</summary><p>n_B≈(2.80×s/δ)²。</p>
+</details><details><summary>ヒント 2</summary><p>δ を半分にすると n_B は何倍になるか。</p>
+</details><details><summary>ヒント 3</summary><p>1ブロックは4試合。</p>
+</details><details><summary>解答・解説</summary><ul>
+<li>δ=0.04：(2.80×0.40/0.04)²＝28²＝784ブロック → 3,136試合</li>
+<li>δ=0.02：56²＝3,136ブロック（4倍）→ 12,544試合</li>
+<li>理想的に8並列できた場合：δ=0.04 は 3,136×0.05/8＝19.6秒、δ=0.02 は
+12,544×0.05/8＝78.4秒（起動・集計などの時間は除く）</li>
+</ul>
+<p>これは正規近似による目安で、検出を保証するものではない。確認実験には新しいシードを使う。</p>
+</details><details><summary>採点の目安</summary><p>784・3,136ブロックと、3,136・12,544試合を区別できている（2点） - δ
+を半分にすると4倍になると説明できている（1点） -
+両方の実行時間が正しい（1点）</p>
+</details></div></article><article class="question" id="q-3-3"><h3>3-C 〔誤りの診断〕共通乱数が効かない実験</h3><p><strong>参照節：</strong> <a
+href="https://www.masakoha.com/Equilibrium/#section-3-2">3.2</a>, <a
+href="https://www.masakoha.com/Equilibrium/#section-3-3">3.3</a></p>
+<div class="question-body"><p>実験ログに次の記載がある。誤りを2つ指摘し、修正案を示せ。 - A と B
+で1本の乱数列を共有した。B のカードは、ランダムな対象を1回余分に選ぶ。 -
+50ブロックごとに検定し、p&lt;0.05 になった300ブロック目で終了した。</p>
+</div><div class="answers"><details><summary>ヒント 1</summary><p>B で乱数を1回多く使うと、その後のシャッフルはどうなるか。</p>
+</details><details><summary>ヒント 2</summary><p>何度も覗いて止める操作は、偽陽性率にどう影響するか。</p>
+</details><details><summary>解答・解説</summary><ol type="1">
+<li>乱数列が一本だと、B
+の効果が乱数を余分に消費する。次のシャッフルなど、本来そろえたい抽選までずれるため、A/Bの相関が弱まり、精度向上が得られなくなることがある。すでに混ぜた山札から引くだけなら、新たに乱数を消費するとは限らない。
+修正：用途別（シャッフル／効果／AI）に乱数ストリームを分け、用途IDと呼び出し番号から派生させる。</li>
+<li>有意になった時点で止めると、多数回の検定を行ったことになり、偽陽性率が名目の5%を超える。
+修正：試行数を事前に固定するか、逐次検定を事前に設計する。</li>
+</ol>
+</details><details><summary>採点の目安</summary><p>乱数の同期崩れを指摘できている（2点） -
+途中停止の問題を指摘できている（2点）</p>
+</details></div></article></section><section><h2 id="q-chapter-4">第4章 対戦AI</h2><article class="question" id="q-4-1"><h3>4-A 〔説明〕最悪値・期待値・勝利確率</h3><p><strong>参照節：</strong> <a
+href="https://www.masakoha.com/Equilibrium/#section-4-1">4.1</a>, <a
+href="https://www.masakoha.com/Equilibrium/#section-4-3">4.3</a></p>
+<div class="question-body"><p>相手の残りHPは5。手 P は確実に3点を与える。手 Q
+は確率0.4で6点、0.6で1点を与える。 (1) 期待打点 (2) このターンで倒す確率
+(3)
+偶然を敵対的に扱って保証できる最小打点を最大化するとき、選ばれる手</p>
+<p>をそれぞれ求めよ。また、各基準がどんな問いに答えているか説明せよ。</p>
+</div><div class="answers"><details><summary>ヒント 1</summary><p>偶然節を最悪値で扱うか、期待値で扱うか。</p>
+</details><details><summary>ヒント 2</summary><p>目的が「打点」か「勝ち」かで、評価値が変わる。</p>
+</details><details><summary>解答・解説</summary><ol type="1">
+<li>期待打点：P＝3、Q＝0.4×6＋0.6×1＝3.0。同点。</li>
+<li>撃破確率：P＝0、Q＝0.4。</li>
+<li>最悪値：P＝3、Q＝1 なので P を選ぶ。</li>
+</ol>
+<p>この例で偶然をあえて敵対的に扱う場合は保証できる打点、Expectimax
+なら確率で重みづけした平均打点を答える。目的関数を「今ターンの勝利」にすると
+Q が良い。偶然は敵ではないので、確率が既知なら Expectimax
+で扱うのが自然。</p>
+</details><details><summary>採点の目安</summary><p>3つの数値が正しい（2点） -
+各基準と目的関数の対応を説明できている（2点）</p>
+</details></div></article><article class="question" id="q-4-2"><h3>4-B 〔計算〕α–β 枝刈りの追跡</h3><p><strong>参照節：</strong> <a
+href="https://www.masakoha.com/Equilibrium/#section-4-2">4.2</a></p>
+<div class="question-body"><p>根は MAX。子は左から MIN 節 L（葉 4, 7）、M（葉 6, 2, 8）、R（葉 5,
+9）。左から順に α–β
+で評価し、根の値、選ぶ手、枝刈りされる葉を答えよ。</p>
+</div><div class="answers"><details><summary>ヒント 1</summary><p>L を評価し終えた時点の α は？</p>
+</details><details><summary>ヒント 2</summary><p>M で葉2を見た時点の β と α を比べる。</p>
+</details><details><summary>解答・解説</summary><ul>
+<li>L：min(4,7)＝4 → α＝4</li>
+<li>M：葉6で β＝6（6&gt;4 なので継続）。葉2で β＝2≤α＝4 → 葉8を枝刈り。M
+の値は2以下</li>
+<li>R：葉5で β＝5&gt;4、葉9でも変わらず → 値5</li>
+</ul>
+<p>根の値は max(4, ≤2, 5)＝5 で、R を選ぶ。枝刈りされるのは M
+の葉8のみ（7葉中6葉を評価）。</p>
+<p>誤答例：R の葉9を枝刈りするのは誤り。葉5を見た時点で β＝5&gt;α＝4
+なので、まだ打ち切れない。</p>
+</details><details><summary>採点の目安</summary><p>根の値と選ぶ手が正しい（2点） - 枝刈りされる葉と、その根拠になる α・β
+の値（2点）</p>
+</details></div></article><article class="question" id="q-4-3"><h3>4-C 〔誤りの診断〕強すぎるベースライン</h3><p><strong>参照節：</strong> <a
+href="https://www.masakoha.com/Equilibrium/#section-4-5">4.5</a></p>
+<div class="question-body"><p>新しい評価関数を入れたら、ルールベースAIに対して勝率が+12ポイント上がった。次のコードの問題点、修正方法、それを検出するテストを示せ。</p>
+<pre class="csharp"><code>public int Score(GameState s, int me)
+{
+    int opp = 1 - me; // この例の配列添字は0と1。勝者IDの1/2符号とは別。
+    int oppKeys = s.Hands[opp].Count(c =&gt; c.IsKey);
+    return 10 * (s.Hp[me] - s.Hp[opp])
+         + s.Hands[me].Count - s.Hands[opp].Count
+         - 5 * oppKeys;
+}</code></pre>
+</div><div class="answers"><details><summary>ヒント 1</summary><p>相手の手札の「枚数」と「中身」は、どちらが公開情報か。</p>
+</details><details><summary>ヒント 2</summary><p>引数の型 <code>GameState</code> は真の状態か、観測か。</p>
+</details><details><summary>解答・解説</summary><p><code>oppKeys</code>
+は相手の非公開の手札内容を読んでいる（盗み見）。+12ポイントの一部または全部は、本番では得られない情報による水増しの可能性がある。手札枚数は公開ルールなら使ってよい。</p>
+<p>修正：引数を <code>Observation</code> にし、Core
+が公開情報だけを渡す。</p>
+<p>テスト：観測が同一で、相手の手札だけが違う2つの状態を作る。同じシードで選ばれる手と評価値が一致することを確認する。</p>
+</details><details><summary>採点の目安</summary><p>非公開情報の使用を特定できている（2点） - 型による修正方法（1点） -
+観測同値テストを示せている（1点）</p>
+</details></div></article></section><section><h2 id="q-chapter-5">第5章 ソフトウェア工学</h2><article class="question" id="q-5-1"><h3>5-A 〔説明〕合法性判定はどこに置くか</h3><p><strong>参照節：</strong> <a
+href="https://www.masakoha.com/Equilibrium/#section-5-1">5.1</a>, <a
+href="https://www.masakoha.com/Equilibrium/#section-5-2">5.2</a>, <a
+href="https://www.masakoha.com/Equilibrium/#section-5-3">5.3</a></p>
+<div class="question-body"><p>チームの一人が「コスト不足のカードは Unity
+側でボタンを無効にすれば十分」と提案した。シミュレーションへの影響を含めて反論し、コスト規則のテストを単体・境界・性質から1つずつ示せ。</p>
+</div><div class="answers"><details><summary>ヒント 1</summary><p>シミュレーションには UI がない。</p>
+</details><details><summary>ヒント 2</summary><p>境界は「ちょうど払える」場合。</p>
+</details><details><summary>解答・解説</summary><p>UI で止めるだけでは、Simulation と AI
+が不正な手を適用できてしまう。結果として勝率が UI
+なしの環境と食い違う。判定を Core
+に一本化すれば、表示側と実験側で同じルールを共有できる。</p>
+<p>テスト例： - 単体：コスト3・所持3で適用 → 所持0 -
+境界：所持2でコスト3 → 失敗し、状態は不変 -
+性質：固定シードからランダムに選んだ合法手だけを1万回適用し、コストが負にならず、カード総数が保存されることを確認する</p>
+</details><details><summary>採点の目安</summary><p>Simulation への影響を指摘できている（2点） -
+3種のテストが具体的（2点）</p>
+</details></div></article><article class="question" id="q-5-2"><h3>5-B 〔実装〕用途別シード派生</h3><p><strong>参照節：</strong> <a
+href="https://www.masakoha.com/Equilibrium/#section-3-2">3.2</a>, <a
+href="https://www.masakoha.com/Equilibrium/#section-5-4">5.4</a></p>
+<div class="question-body"><p>(実験シード, ブロックID, 用途ID, 呼び出し番号) から 64bit
+のシードを決定的に作る C# 関数を書け。<code>HashCode.Combine</code> や
+<code>string.GetHashCode</code> を使ってはいけない理由も述べよ。</p>
+</div><div class="answers"><details><summary>ヒント 1</summary><p>SplitMix64 の混合関数を使う。</p>
+</details><details><summary>ヒント 2</summary><p>共通のブロックとイベントの識別子を使う。A/B
+ラベルは、乱数を独立にしたい用途にだけ加える。</p>
+</details><details><summary>解答・解説</summary><pre class="csharp"><code>public enum Purpose : ulong { Shuffle = 1, Effect = 2, Ai = 3 }
+
+public static class SeedV1
+{
+    static ulong Mix(ulong z)
+    {
+        unchecked
+        {
+            z += 0x9E3779B97F4A7C15UL;
+            z = (z ^ (z &gt;&gt; 30)) * 0xBF58476D1CE4E5B9UL;
+            z = (z ^ (z &gt;&gt; 27)) * 0x94D049BB133111EBUL;
+            return z ^ (z &gt;&gt; 31);
+        }
+    }
+
+    public static ulong Derive(ulong exp, ulong block, Purpose p, ulong call)
+        =&gt; Mix(Mix(Mix(Mix(exp) ^ block) ^ (ulong)p) ^ call);
+}</code></pre>
+<p>.NET の <code>HashCode</code>
+と文字列ハッシュは、実装によってプロセスや環境を越えて一定とは限らず、永続シードの形式として使わない。</p>
+<p>共通化する用途では A/B
+ラベルを含めず、共有するブロック・先後・側・意味上のイベントのキーを合わせる。独立にする用途では
+A/B
+ラベルも入れる。シャッフルが同じ乱数なら同じ長さの配列に同じ順列を適用できるが、差し替えたカード自体は異なる。</p>
+<p>固定入力に対する出力（例：Derive(2026, 7, Purpose.Shuffle, 0) は
+0x9FF9B2DAC9951696）をテストとして保存し、版名 V1 と一緒に記録する。</p>
+</details><details><summary>採点の目安</summary><p>決定的で、用途と呼び出し番号を分離できている（2点） -
+ハッシュのランダム化を指摘できている（1点） - A/B
+で共有する値を正しく設計し、ゴールデンテストを用意している（1点）</p>
+</details></div></article><article class="question" id="q-5-3"><h3>5-C 〔誤りの診断〕並列化で結果が揺れる</h3><p><strong>参照節：</strong> <a
+href="https://www.masakoha.com/Equilibrium/#section-5-3">5.3</a>, <a
+href="https://www.masakoha.com/Equilibrium/#section-5-4">5.4</a></p>
+<div class="question-body"><p>次のコードでは、8並列にすると勝率とCSVの行順が実行ごとに変わる。どちらに何が影響するかを分けて説明し、修正案を示せ。</p>
+<pre class="csharp"><code>static readonly Random Rng = new Random(2026);
+Parallel.For(0, 10_000, i =&gt; results.Add(RunMatch(i, Rng))); // ConcurrentBag
+WriteCsv(results);</code></pre>
+</div><div class="answers"><details><summary>ヒント 1</summary><p>乱数を消費する順番を決めているのは誰か。</p>
+</details><details><summary>ヒント 2</summary><p><code>ConcurrentBag</code> の列挙順は保証されているか。</p>
+</details><details><summary>解答・解説</summary><ol type="1">
+<li>共有の <code>Random</code>
+は、スレッドのスケジュール順で各試合に割り当たる値が変わる。さらに通常の
+<code>System.Random</code>
+インスタンスはスレッド安全ではなく、内部状態が壊れることもある。
+修正：試合IDから 5-B
+の方法でシードを派生させ、試合ごとに独立した乱数を持たせる。</li>
+<li><code>ConcurrentBag</code> は順序不定なので、CSV
+の行順が変わる。ただし全件を数えるだけの勝率は、行順だけでは変わらない。
+修正：<code>results[i]</code>
+に配列で格納するか、出力前に試合IDで整列する。</li>
+</ol>
+<p>検証：1並列と8並列で、試合ID別の結果とイベント列が一致するかを比較する。</p>
+</details><details><summary>採点の目安</summary><p>2つの原因を特定できている（各1点） - 修正案と検証方法（2点）</p>
+</details></div></article></section><section><h2 id="q-chapter-6">最終総合問題 キーカード差し替えの評価</h2><article class="question" id="capstone"><h3>実験計画と考察</h3><p><strong>参照節：</strong> <a
+href="https://www.masakoha.com/Equilibrium/#section-2-2">2.2</a>〜<a
+href="https://www.masakoha.com/Equilibrium/#section-2-5">2.5</a>, <a
+href="https://www.masakoha.com/Equilibrium/#section-3-1">3.1</a>〜<a
+href="https://www.masakoha.com/Equilibrium/#section-3-4">3.4</a>, <a
+href="https://www.masakoha.com/Equilibrium/#section-6-1">6.1</a>, <a
+href="https://www.masakoha.com/Equilibrium/#section-6-2">6.2</a></p>
+<div class="question-body"><p>架空データ。キー3枚の基準 A と、うち1枚を代替に替えキー2枚を残した B
+を比較した。対面 X と Y それぞれで400ブロック（1ブロック＝先後×A/B
+の4試合）を実行した。シードはブロック間・対面間で独立とする。勝ち1、それ以外0とし、引き分け率は別に記録する。実務上の同等幅は
+±2
+ポイント。この演習では、95%区間全体が同等幅内に入ったときだけ同等と報告する保守的な基準を事前に採用する。ブロック差
+d_b の度数は次のとおり。</p>
+<table>
+<thead>
+<tr class="header">
+<th>d_b</th>
+<th>−1</th>
+<th>−0.5</th>
+<th>0</th>
+<th>+0.5</th>
+<th>+1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>対面X</td>
+<td>10</td>
+<td>50</td>
+<td>240</td>
+<td>80</td>
+<td>20</td>
+</tr>
+<tr class="even">
+<td>対面Y</td>
+<td>25</td>
+<td>75</td>
+<td>230</td>
+<td>55</td>
+<td>15</td>
+</tr>
+</tbody>
+</table>
+<p>診断データ：B
+の試合で、キーを5ターン目までに取得した試合の勝率は58%、取得しなかった試合は44%。</p>
+<ol type="1">
+<li>対面別に Δ̂ と95%区間（正規近似）を求めよ。（25点）</li>
+<li>両対面を等重みで合算した Δ̂
+と区間を求め、同等と判断できるか述べよ。（15点）</li>
+<li>対面別の両側検定に Holm 法（α=0.05）を適用せよ。（10点）</li>
+<li>診断データの読み方を述べよ。（15点）</li>
+<li>確認実験の計画を書け。（35点）</li>
+</ol>
+</div><div class="answers"><details><summary>ヒント 1</summary><p>平均＝Σ d×度数/400。Var＝E[d²]−平均²。標準誤差＝SD/20。</p>
+</details><details><summary>ヒント 2</summary><p>合算の標準誤差＝√(SE_X²＋SE_Y²)/2。</p>
+</details><details><summary>ヒント 3</summary><p>z＝Δ̂/SE。|z|=3.20 なら p≈0.0014、|z|=2.37 なら p≈0.018。</p>
+</details><details><summary>ヒント 4</summary><p>6.1 の「相性の打ち消し」と 3-A を思い出す。</p>
+</details><details><summary>解答・解説</summary><ol type="1">
+<li>対面別の推定
+<ul>
+<li>X：平均＝(−10−25＋40＋20)/400＝0.0625。E[d²]＝62.5/400＝0.15625。Var＝0.15234
+→ SD 0.3903 → SE 0.01952。区間＝0.0625±0.0383 → <strong>+2.4〜+10.1
+ポイント</strong></li>
+<li>Y：平均＝(−25−37.5＋27.5＋15)/400＝−0.05。E[d²]＝72.5/400＝0.18125。Var＝0.17875
+→ SD 0.4228 → SE 0.02114。区間＝−0.05±0.0414 → <strong>−9.1〜−0.9
+ポイント</strong></li>
+</ul></li>
+<li>合算：Δ̂＝(0.0625−0.05)/2＝+0.6
+ポイント。SE＝√(0.000381＋0.000447)/2≈0.01439。区間＝<strong>−2.2〜+3.4
+ポイント</strong>。区間が ±2
+の境界をはみ出すので、同等とは判断できない。さらに、対面ごとに効果の向きが逆なので、全体の平均だけで報告すると相性の変化を隠してしまう。</li>
+<li>Holm
+法：z_X＝3.20（p≈0.0014）、z_Y＝−2.37（p≈0.018）。0.0014&lt;0.025 →
+棄却。0.018&lt;0.05 → 棄却。両対面とも差ありで、向きは逆。</li>
+<li>診断データは「取得」で試合を分けた観測比較であり、交絡がある（長い試合ほど取得しやすい等）。したがって+14ポイントをカードの効果とは呼べない。キーへの依存を示唆する手がかりとして扱い、因果を問うなら「指定ターンまで取得できない」という介入実験で検証する。</li>
+<li>実験計画の見本
+<ul>
+<li>問い：B−A が、対面 X で正、Y で負かを、新しいシードで確認する。</li>
+<li>規模：予備実験で s≈0.42
+と仮定し、δ=0.03、個々の検定の検出力80%を目標とする。4検定のHolm法に備え、最も厳しい両側の有意水準
+0.05/4＝0.0125 を使う。分位点 z₁≈2.4977、z₂≈0.8416 なので
+ceil(((z₁+z₂)×0.42/0.03)²)＝2,186ブロック/対面×AI。全4条件で計8,744ブロック、34,976試合。これは各検定の計画値で、4検定すべての検出力を約束しない。別AIの
+s は予備実験で確認し、確認用の試行数は事前に固定する。</li>
+<li>条件：AI
+2種（ルールベース／探索型）、乱数は用途別派生（版を記録）、勝ち1、それ以外0として試合を除外せず、引き分け率は別に報告する。</li>
+<li>解析：主指標は対面×AI 別の Δ̂
+とブロック単位の区間（ブロック・ブートストラップ）。4つの確認的検定に
+Holm 法を適用する。合算は等重みの補助指標。</li>
+<li>再現：各対面で |d_b|=1 のブロックを2件ずつリプレイし、Y
+で不利になる局面を特定する。</li>
+<li>記録：ルール・デッキ・AI の版、シード、再実行コマンド、AI
+が苦手な戦略。</li>
+</ul></li>
+</ol>
+</details><details><summary>採点の目安</summary><p>問1：各対面の Δ̂（5点×2）、区間（7.5点×2）。±0.3ポイント以内なら可 -
+問2：数値（7点）、境界を超えるので同等とは言えない（4点）、相性の打ち消しへの言及（4点）
+- 問3：比較値と結論（10点） -
+問4：交絡の指摘（8点）、介入実験への言い換え（7点） -
+問5：事前に固定した規模と算出根拠（10点）、新しいシードと2種のAI（8点）、ブロック単位の解析と多重比較（9点）、リプレイと記録（8点）
+-
+採点目安：80点以上で合格。問1の計算ミスが問2以降に波及した場合は、その後の手順が正しければ減点しない</p>
+</details></div></article></section></main></div><footer><div class="wrap"><a href="#top">先頭へ戻る</a></div></footer></body></html>
