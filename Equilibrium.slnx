@@ -3,8 +3,12 @@
     <Project Path="samples/ToyGame/ToyGame.csproj" />
   </Folder>
   <Folder Name="/src/">
+    <Project Path="src/Equilibrium.Cli/Equilibrium.Cli.csproj" />
     <Project Path="src/Equilibrium.Core/Equilibrium.Core.csproj" />
     <Project Path="src/Equilibrium.Simulation/Equilibrium.Simulation.csproj" />
     <Project Path="src/Equilibrium.Storage/Equilibrium.Storage.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Equilibrium.Smoke/Equilibrium.Smoke.csproj" />
   </Folder>
 </Solution>

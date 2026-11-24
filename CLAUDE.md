@@ -5,7 +5,7 @@
 - 設計の正本: `docs/design.md`。仕様を変えるときは先にここを直す
 - 計画書: `docs/plan/`（v0.2。章ごとに分割、索引は `docs/plan/README.md`）
 - ビルド: `dotnet build Equilibrium.slnx -nologo -v q -clp:ErrorsOnly`
-- テスト: `dotnet test Equilibrium.slnx -nologo -v q`（テストはまだ無い）
+- テスト: `dotnet run --project tests/Equilibrium.Smoke -c Release`（Phase 1 の回帰テスト）
 - C# 規約は `~/.claude/rules/coding-principles.md`。`unity-csharp.md` の Unity 固有項目は対象外。命名・ブレース・`None = 0` enum・省略形禁止は適用する
 
 ## このリポジトリ固有の決まり
