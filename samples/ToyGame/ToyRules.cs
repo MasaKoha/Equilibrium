@@ -118,6 +118,10 @@ namespace Equilibrium.ToyGame
         public const string Version = "toy-v1";
         /// <summary>Explicit pass action.</summary>
         public const int Pass = -1;
+        /// <summary>The losing seat's life reached zero.</summary>
+        public const string LifeZeroReason = "life-zero";
+        /// <summary>The losing seat could not draw at turn start.</summary>
+        public const string DeckEmptyReason = "deck-empty";
         private const int MaximumLife = 12;
         private const int TurnLimit = 24;
         private const int HandSize = 3;
@@ -232,7 +236,7 @@ namespace Equilibrium.ToyGame
             if (life[other] == 0)
             {
                 outcome = Winner(seat);
-                reason = "life-zero";
+                reason = LifeZeroReason;
             }
             else if (state.Turn == TurnLimit)
             {
@@ -242,7 +246,7 @@ namespace Equilibrium.ToyGame
             else if (!Draw(state.Decks, cursors, hands, other))
             {
                 outcome = Winner(seat);
-                reason = "deck-empty";
+                reason = DeckEmptyReason;
             }
 
             var next = new ToyState(state.Turn + (outcome == Outcome.None ? 1 : 0),

@@ -22,7 +22,8 @@ namespace Equilibrium.Smoke
                 ("exact replay and malformed replay refusal", Replay),
                 ("seat balance and deterministic report", Report),
                 ("common shuffles and one-card difference", CommonShuffles),
-                ("deck exhaustion is a rule-defined loss", DeckExhaustion)
+                ("deck exhaustion is a rule-defined loss", DeckExhaustion),
+                ("end reasons match full event traces", EndReasons)
             };
             foreach (var test in tests)
             {
@@ -185,6 +186,42 @@ namespace Equilibrium.Smoke
             var one = MatchRunner.Run(game, Start(game), (view, actions) => ToyRules.Pass, capture: true);
             Require(one.Events.Count == 14 && one.Outcome == Outcome.SeatOneWins &&
                 one.Events[^1].EndReason == "deck-empty");
+        }
+
+        private static void EndReasons()
+        {
+            const int blocks = 128;
+            var report = ToyExperiment.Compare(2026, blocks);
+            var cells = new[] { report.BaselineFirst, report.BaselineSecond,
+                report.ReplacementFirst, report.ReplacementSecond };
+            var game = new ToyRules();
+            for (int cell = 0; cell < cells.Length; cell++)
+            {
+                string deckId = cell < 2 ? "baseline" : "replacement";
+                int startingSeat = cell % 2;
+                var endings = Enumerable.Range(0, blocks).Select(block =>
+                {
+                    ulong seed = CounterRandom.Word(2026, 100, (ulong)block);
+                    var initial = game.Start(seed, startingSeat, ToyRules.Deck(deckId), ToyRules.Deck("opponent"));
+                    var full = MatchRunner.Run(game, initial, ToyPolicy.Choose, capture: true);
+                    var shortRun = MatchRunner.Run(game, initial, ToyPolicy.Choose, capture: false, out var final);
+                    Require(shortRun.Events.Count == 0 && full.Events[^1].Equals(final));
+                    return full.Events[^1];
+                }).ToArray();
+
+                var counts = cells[cell];
+                Require(counts.WinsByOpponentLifeZero ==
+                    endings.Count(e => e.Outcome == Outcome.SeatZeroWins && e.EndReason == "life-zero"));
+                Require(counts.WinsByOpponentDeckEmpty ==
+                    endings.Count(e => e.Outcome == Outcome.SeatZeroWins && e.EndReason == "deck-empty"));
+                Require(counts.LossesByLifeZero ==
+                    endings.Count(e => e.Outcome == Outcome.SeatOneWins && e.EndReason == "life-zero"));
+                Require(counts.LossesByDeckEmpty ==
+                    endings.Count(e => e.Outcome == Outcome.SeatOneWins && e.EndReason == "deck-empty"));
+                Require(counts.Wins == counts.WinsByOpponentLifeZero + counts.WinsByOpponentDeckEmpty);
+                Require(counts.Losses == counts.LossesByLifeZero + counts.LossesByDeckEmpty);
+                Require(startingSeat == 0 ? counts.LossesByDeckEmpty > 0 : counts.LossesByDeckEmpty == 0);
+            }
         }
 
         private static double Score(OutcomeCounts counts) => counts.Wins + 0.5 * counts.Draws;

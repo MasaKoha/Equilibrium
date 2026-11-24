@@ -12,12 +12,23 @@ namespace Equilibrium.Simulation
             IGame<TState, TView, TAction, TEvent> game, TState state,
             Func<TView, IReadOnlyList<TAction>, TAction> choose, bool capture)
         {
+            return Run(game, state, choose, capture, out _);
+        }
+
+        /// <summary>Runs a match and returns its final event even when the full trace is not retained.
+        /// The final event is the default value if the initial state was already terminal.</summary>
+        public static (Outcome Outcome, IReadOnlyList<TEvent> Events) Run<TState, TView, TAction, TEvent>(
+            IGame<TState, TView, TAction, TEvent> game, TState state,
+            Func<TView, IReadOnlyList<TAction>, TAction> choose, bool capture, out TEvent finalEvent)
+        {
+            finalEvent = default!;
             var events = capture ? new List<TEvent>() : null;
             while (game.GetOutcome(state) == Outcome.None)
             {
                 TAction action = choose(game.Observe(state), game.LegalActions(state));
                 var step = game.Apply(state, action);
                 state = step.State;
+                finalEvent = step.Event;
                 events?.Add(step.Event);
             }
 

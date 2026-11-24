@@ -58,6 +58,9 @@ dotnet run --project src/Equilibrium.Cli -c Release --no-build -- replay runs/to
 先攻・後攻でそれぞれ 1 回ずつ、計 4 試合行う。JSON の `BaselineMinusReplacement`
 は元デッキから差し替え後を引いた値（0.05 は 5 ポイント）。95% 区間は試行単位を独立と
 みなした場合の保守的な区間で、AI や相手デッキを替えたときの差は説明しない。
+先後・デッキ別の各集計には、負けの内訳 `LossesByLifeZero`（自分のライフが 0）
+と `LossesByDeckEmpty`（自分が引けない）がある。勝ちも相手側の同じ理由で分ける。
+これらの内訳は全試合を対象とし、詳細ログは従来どおり初回ブロックだけを保存する。
 `replay` は初回ブロックの実対戦 0〜3 を再現し、保存済みイベント列と勝敗を照合する。
 
 ## 文書

@@ -39,9 +39,10 @@ namespace Equilibrium.Cli
                     for (int startingSeat = 0; startingSeat < 2; startingSeat++)
                     {
                         var initial = game.Start(matchSeed, startingSeat, decks[variant], opponent);
-                        var result = MatchRunner.Run(game, initial, ToyPolicy.Choose, capture: block == 0);
+                        var result = MatchRunner.Run(game, initial, ToyPolicy.Choose, capture: block == 0,
+                            out ToyEvent finalEvent);
                         int cell = variant * 2 + startingSeat;
-                        counts[cell] = counts[cell].Add(result.Outcome);
+                        counts[cell] = counts[cell].Add(result.Outcome, finalEvent.EndReason);
                         if (result.Outcome == Outcome.Limit)
                         {
                             complete = false;
@@ -88,15 +89,33 @@ namespace Equilibrium.Cli
             ? null
             : (Wins + 0.5 * Draws) / (Wins + Losses + Draws);
 
-        internal OutcomeCounts Add(Outcome outcome)
+        /// <summary>Seat zero won by reducing the opponent's life to zero.</summary>
+        public int WinsByOpponentLifeZero { get; private init; }
+
+        /// <summary>Seat zero won because the opponent could not draw.</summary>
+        public int WinsByOpponentDeckEmpty { get; private init; }
+
+        /// <summary>Seat zero lost because its own life reached zero.</summary>
+        public int LossesByLifeZero { get; private init; }
+
+        /// <summary>Seat zero lost because it could not draw.</summary>
+        public int LossesByDeckEmpty { get; private init; }
+
+        internal OutcomeCounts Add(Outcome outcome, string endReason)
         {
-            return outcome switch
+            return (outcome, endReason) switch
             {
-                Outcome.SeatZeroWins => this with { Wins = Wins + 1 },
-                Outcome.SeatOneWins => this with { Losses = Losses + 1 },
-                Outcome.Draw => this with { Draws = Draws + 1 },
-                Outcome.Limit => this with { Limits = Limits + 1 },
-                _ => throw new ArgumentOutOfRangeException(nameof(outcome))
+                (Outcome.SeatZeroWins, ToyRules.LifeZeroReason) =>
+                    this with { Wins = Wins + 1, WinsByOpponentLifeZero = WinsByOpponentLifeZero + 1 },
+                (Outcome.SeatZeroWins, ToyRules.DeckEmptyReason) =>
+                    this with { Wins = Wins + 1, WinsByOpponentDeckEmpty = WinsByOpponentDeckEmpty + 1 },
+                (Outcome.SeatOneWins, ToyRules.LifeZeroReason) =>
+                    this with { Losses = Losses + 1, LossesByLifeZero = LossesByLifeZero + 1 },
+                (Outcome.SeatOneWins, ToyRules.DeckEmptyReason) =>
+                    this with { Losses = Losses + 1, LossesByDeckEmpty = LossesByDeckEmpty + 1 },
+                (Outcome.Draw, _) => this with { Draws = Draws + 1 },
+                (Outcome.Limit, _) => this with { Limits = Limits + 1 },
+                _ => throw new InvalidOperationException($"Unexpected toy result: {outcome}, {endReason}.")
             };
         }
     }
